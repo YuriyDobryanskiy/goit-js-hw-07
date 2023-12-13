@@ -26,9 +26,16 @@ const images = [
 ];
 
 const gallery = document.querySelector('.gallery');
-for (const { url, alt } of images) {
-  gallery.insertAdjacentHTML(
-    'beforeend',
-    `<li class='image'><img src='${url}' alt='${alt}' width='300'></li>`
-  );
-}
+const createLis = images.map(
+  ({ url, alt }) => `
+  <li>
+    <img src="${url}" alt="${alt}" width="300">
+  </li>
+`
+);
+gallery.innerHTML = createLis.join('');
+
+gallery.setAttribute(
+  'style',
+  'list-style-type:none; display: flex; flex-direction: row; gap:10px;'
+);
